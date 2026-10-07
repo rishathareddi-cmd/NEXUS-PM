@@ -1,0 +1,1320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NEXUS PM | AI Project Management Assistant</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<!-- ================= LOGIN ================= -->
+<div id="loginPage" class="auth-page">
+
+    <div class="auth-left">
+        <div class="brand">
+            <div class="logo">N</div>
+            <span>NEXUS PM</span>
+        </div>
+
+        <div class="hero-content">
+            <span class="badge">AI PROJECT INTELLIGENCE</span>
+
+            <h1>
+                Plan smarter.<br>
+                <span>Predict earlier.</span><br>
+                Deliver better.
+            </h1>
+
+            <p>
+                Your intelligent project co-pilot for predicting delays,
+                balancing workloads and making smarter project decisions.
+            </p>
+
+            <div class="mini-dashboard">
+                <div class="mini-top">
+                    <span>Project Health</span>
+                    <strong>72%</strong>
+                </div>
+
+                <div class="progress">
+                    <div style="width:72%"></div>
+                </div>
+
+                <div class="risk-alert">
+                    <span>⚠️</span>
+                    <div>
+                        <b>AI Risk Detected</b>
+                        <small>API Integration may cause a 4-day delay</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="auth-right">
+        <div class="login-card">
+
+            <h2>Welcome back</h2>
+            <p class="muted">Sign in to your project workspace</p>
+
+            <label>Email</label>
+            <input id="email" type="email" placeholder="you@college.edu">
+
+            <label>Password</label>
+            <div class="password-box">
+                <input id="password" type="password" placeholder="Enter password">
+                <button onclick="togglePassword()">👁</button>
+            </div>
+
+            <div class="login-options">
+                <label class="check">
+                    <input type="checkbox">
+                    Remember me
+                </label>
+
+                <a href="#">Forgot password?</a>
+            </div>
+
+            <button class="primary-btn" onclick="login()">
+                Sign In →
+            </button>
+
+            <div class="divider">
+                <span>OR</span>
+            </div>
+
+            <button class="sso-btn" onclick="login()">
+                🏫 Continue with College SSO
+            </button>
+
+            <p class="signup">
+                New to NEXUS PM?
+                <a href="#" onclick="showRegister()">Create Account</a>
+            </p>
+
+            <div id="loginError" class="error-message"></div>
+
+        </div>
+    </div>
+</div>
+
+
+<!-- ================= REGISTER ================= -->
+<div id="registerPage" class="auth-page hidden">
+
+    <div class="auth-right register-container">
+
+        <div class="login-card">
+
+            <div class="brand small-brand">
+                <div class="logo">N</div>
+                <span>NEXUS PM</span>
+            </div>
+
+            <h2>Create your account</h2>
+            <p class="muted">Start managing projects intelligently.</p>
+
+            <label>Full Name</label>
+            <input id="regName" type="text" placeholder="Your name">
+
+            <label>College / Organization Email</label>
+            <input id="regEmail" type="email" placeholder="you@college.edu">
+
+            <label>Password</label>
+            <input id="regPassword" type="password" placeholder="Create password">
+
+            <label>Role</label>
+            <select>
+                <option>Team Member</option>
+                <option>Project Manager</option>
+                <option>Admin</option>
+            </select>
+
+            <label>Department</label>
+            <input type="text" placeholder="Computer Science">
+
+            <button class="primary-btn" onclick="register()">
+                Create Account →
+            </button>
+
+            <p class="signup">
+                Already have an account?
+                <a href="#" onclick="showLogin()">Sign In</a>
+            </p>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- ================= APPLICATION ================= -->
+<div id="app" class="hidden">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+
+        <div class="brand">
+            <div class="logo">N</div>
+            <span>NEXUS PM</span>
+        </div>
+
+        <div class="workspace">
+            <small>WORKSPACE</small>
+            <div class="workspace-name">
+                🚀 Campus Connect
+                <span>⌄</span>
+            </div>
+        </div>
+
+        <nav>
+
+            <button class="nav-item active" onclick="showSection('dashboard',this)">
+                <span>▦</span> Dashboard
+            </button>
+
+            <button class="nav-item" onclick="showSection('projects',this)">
+                <span>◫</span> Projects
+            </button>
+
+            <button class="nav-item" onclick="showSection('tasks',this)">
+                <span>✓</span> My Tasks
+            </button>
+
+            <button class="nav-item" onclick="showSection('team',this)">
+                <span>♟</span> Team
+            </button>
+
+            <button class="nav-item" onclick="showSection('ai',this)">
+                <span>✦</span> AI Insights
+                <span class="new-dot"></span>
+            </button>
+
+            <button class="nav-item" onclick="showSection('reports',this)">
+                <span>▤</span> Reports
+            </button>
+
+            <button class="nav-item" onclick="showSection('activity',this)">
+                <span>◷</span> Activity
+            </button>
+
+        </nav>
+
+        <div class="sidebar-bottom">
+
+            <button class="nav-item">
+                ⚙ Settings
+            </button>
+
+            <button class="logout" onclick="logout()">
+                ↪ Logout
+            </button>
+
+            <div class="user-profile">
+                <div class="avatar">R</div>
+                <div>
+                    <b>Rishitha</b>
+                    <small>Team Member</small>
+                </div>
+            </div>
+
+        </div>
+
+    </aside>
+
+
+    <!-- Main Content -->
+    <main class="main">
+
+        <!-- Topbar -->
+        <header class="topbar">
+
+            <div class="search">
+                🔍
+                <input placeholder="Search projects, tasks...">
+                <kbd>⌘ K</kbd>
+            </div>
+
+            <div class="top-actions">
+                <button onclick="showNotification()">🔔</button>
+                <button onclick="showSection('ai')">✦</button>
+
+                <div class="avatar">R</div>
+            </div>
+
+        </header>
+
+
+        <!-- ================= DASHBOARD ================= -->
+        <section id="dashboard" class="section active-section">
+
+            <div class="page-header">
+                <div>
+                    <p class="eyebrow">WEDNESDAY, OCTOBER 7</p>
+                    <h1>Good morning, Rishitha 👋</h1>
+                    <p class="muted">
+                        Here's what needs your attention today.
+                    </p>
+                </div>
+
+                <button class="primary-btn small" onclick="openModal()">
+                    + New Task
+                </button>
+            </div>
+
+
+            <!-- Project Health -->
+            <div class="health-card">
+
+                <div class="health-info">
+
+                    <div>
+                        <span class="status warning">● AT RISK</span>
+
+                        <h2>Campus Connect</h2>
+
+                        <p>
+                            AI-powered campus platform
+                        </p>
+                    </div>
+
+                    <div class="health-score">
+                        <div class="circle">
+                            <strong>72%</strong>
+                        </div>
+
+                        <span>Project Health</span>
+                    </div>
+
+                </div>
+
+                <div class="health-details">
+
+                    <div>
+                        <span>Progress</span>
+                        <b>68%</b>
+                    </div>
+
+                    <div>
+                        <span>Schedule</span>
+                        <b>61%</b>
+                    </div>
+
+                    <div>
+                        <span>Team Capacity</span>
+                        <b>82%</b>
+                    </div>
+
+                    <div>
+                        <span>Risk Level</span>
+                        <b class="orange">Medium</b>
+                    </div>
+
+                </div>
+
+                <div class="ai-warning">
+                    <span class="ai-icon">✦</span>
+
+                    <div>
+                        <b>AI predicts a 4-day delay</b>
+                        <p>
+                            Current workload and unresolved dependencies
+                            indicate a potential schedule risk.
+                        </p>
+                    </div>
+
+                    <button onclick="showSection('ai')">
+                        View Analysis →
+                    </button>
+                </div>
+
+            </div>
+
+
+            <!-- Metrics -->
+            <div class="metrics">
+
+                <div class="metric-card">
+                    <span class="metric-icon blue">☷</span>
+                    <div>
+                        <small>Total Tasks</small>
+                        <h2>48</h2>
+                    </div>
+                </div>
+
+                <div class="metric-card">
+                    <span class="metric-icon green">✓</span>
+                    <div>
+                        <small>Completed</small>
+                        <h2>31</h2>
+                    </div>
+                </div>
+
+                <div class="metric-card">
+                    <span class="metric-icon purple">◔</span>
+                    <div>
+                        <small>In Progress</small>
+                        <h2>12</h2>
+                    </div>
+                </div>
+
+                <div class="metric-card danger-card">
+                    <span class="metric-icon red">!</span>
+                    <div>
+                        <small>At Risk</small>
+                        <h2>5</h2>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div class="dashboard-grid">
+
+                <!-- AI Priority -->
+                <div class="panel priority-panel">
+
+                    <div class="panel-header">
+                        <div>
+                            <h2>✦ AI Priority Center</h2>
+                            <p>Recommended actions for your team</p>
+                        </div>
+
+                        <span class="ai-label">AI POWERED</span>
+                    </div>
+
+                    <div class="recommendation high">
+
+                        <div class="recommend-icon">!</div>
+
+                        <div class="recommend-content">
+                            <span class="priority high-text">HIGH PRIORITY</span>
+
+                            <h3>API Integration is blocking 3 tasks</h3>
+
+                            <p>
+                                Backend API is incomplete and frontend
+                                integration starts tomorrow.
+                            </p>
+
+                            <div class="recommend-actions">
+                                <button onclick="applyRecommendation(this)">
+                                    Apply Recommendation
+                                </button>
+
+                                <button class="link-btn">
+                                    View Details
+                                </button>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                    <div class="recommendation">
+
+                        <div class="recommend-icon purple-icon">↗</div>
+
+                        <div class="recommend-content">
+
+                            <span class="priority">MEDIUM</span>
+
+                            <h3>Testing workload is concentrated on Priya</h3>
+
+                            <p>
+                                Priya is currently at 96% capacity.
+                            </p>
+
+                            <div class="recommend-actions">
+                                <button onclick="applyRecommendation(this)">
+                                    Optimize Team
+                                </button>
+
+                                <button class="link-btn">
+                                    Details
+                                </button>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Upcoming -->
+                <div class="panel">
+
+                    <div class="panel-header">
+                        <div>
+                            <h2>Upcoming</h2>
+                            <p>Important project milestones</p>
+                        </div>
+
+                        <button class="more">•••</button>
+                    </div>
+
+                    <div class="deadline">
+
+                        <div class="calendar-icon">
+                            <b>14</b>
+                            <small>OCT</small>
+                        </div>
+
+                        <div>
+                            <b>MVP Delivery</b>
+                            <p>Campus Connect</p>
+                        </div>
+
+                        <span class="days">6 days</span>
+
+                    </div>
+
+                    <div class="deadline">
+
+                        <div class="calendar-icon">
+                            <b>18</b>
+                            <small>OCT</small>
+                        </div>
+
+                        <div>
+                            <b>Testing Complete</b>
+                            <p>QA Milestone</p>
+                        </div>
+
+                        <span class="days">10 days</span>
+
+                    </div>
+
+                    <div class="deadline">
+
+                        <div class="calendar-icon">
+                            <b>22</b>
+                            <small>OCT</small>
+                        </div>
+
+                        <div>
+                            <b>Deployment</b>
+                            <p>Production Release</p>
+                        </div>
+
+                        <span class="days">15 days</span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- Quick AI -->
+            <div class="ai-quick">
+
+                <div class="ai-orb">✦</div>
+
+                <div class="ai-quick-content">
+
+                    <h2>Ask NEXUS AI</h2>
+
+                    <p>
+                        Get instant answers about your project.
+                    </p>
+
+                    <div class="quick-prompts">
+
+                        <button onclick="askAI('Will we finish on time?')">
+                            Will we finish on time?
+                        </button>
+
+                        <button onclick="askAI('Who is overloaded?')">
+                            Who is overloaded?
+                        </button>
+
+                        <button onclick="askAI('What should we work on next?')">
+                            What should we work on next?
+                        </button>
+
+                    </div>
+
+                </div>
+
+                <button class="primary-btn" onclick="showSection('ai')">
+                    Open AI →
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= PROJECTS ================= -->
+        <section id="projects" class="section">
+
+            <div class="page-header">
+                <div>
+                    <p class="eyebrow">WORKSPACE</p>
+                    <h1>Projects</h1>
+                    <p class="muted">
+                        Monitor all your projects in one place.
+                    </p>
+                </div>
+
+                <button class="primary-btn" onclick="openModal()">
+                    + New Project
+                </button>
+            </div>
+
+            <div class="project-grid">
+
+                <div class="project-card">
+
+                    <div class="project-top">
+                        <span class="project-icon">🚀</span>
+                        <span class="status warning">AT RISK</span>
+                    </div>
+
+                    <h2>Campus Connect</h2>
+
+                    <p>AI-powered campus platform</p>
+
+                    <div class="project-progress">
+                        <div>
+                            <span>Progress</span>
+                            <b>68%</b>
+                        </div>
+
+                        <div class="progress">
+                            <div style="width:68%"></div>
+                        </div>
+                    </div>
+
+                    <div class="project-footer">
+                        <span>📅 Oct 14</span>
+                        <span>👥 8 members</span>
+                    </div>
+
+                </div>
+
+
+                <div class="project-card">
+
+                    <div class="project-top">
+                        <span class="project-icon purple-bg">🤖</span>
+                        <span class="status success">ON TRACK</span>
+                    </div>
+
+                    <h2>AI Learning Platform</h2>
+
+                    <p>Personalized education system</p>
+
+                    <div class="project-progress">
+                        <div>
+                            <span>Progress</span>
+                            <b>82%</b>
+                        </div>
+
+                        <div class="progress">
+                            <div style="width:82%"></div>
+                        </div>
+                    </div>
+
+                    <div class="project-footer">
+                        <span>📅 Oct 22</span>
+                        <span>👥 6 members</span>
+                    </div>
+
+                </div>
+
+
+                <div class="project-card">
+
+                    <div class="project-top">
+                        <span class="project-icon green-bg">🏫</span>
+                        <span class="status success">HEALTHY</span>
+                    </div>
+
+                    <h2>Smart Campus</h2>
+
+                    <p>Digital campus management</p>
+
+                    <div class="project-progress">
+                        <div>
+                            <span>Progress</span>
+                            <b>45%</b>
+                        </div>
+
+                        <div class="progress">
+                            <div style="width:45%"></div>
+                        </div>
+                    </div>
+
+                    <div class="project-footer">
+                        <span>📅 Nov 05</span>
+                        <span>👥 10 members</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= TASKS ================= -->
+        <section id="tasks" class="section">
+
+            <div class="page-header">
+
+                <div>
+                    <p class="eyebrow">PROJECT WORKFLOW</p>
+                    <h1>Task Board</h1>
+                    <p class="muted">
+                        Manage tasks and priorities.
+                    </p>
+                </div>
+
+                <button class="primary-btn" onclick="openModal()">
+                    + Add Task
+                </button>
+
+            </div>
+
+            <div class="kanban">
+
+                <div class="kanban-column">
+
+                    <div class="kanban-header">
+                        <span>TO DO</span>
+                        <b>3</b>
+                    </div>
+
+                    <div class="task-card">
+                        <span class="priority high-text">HIGH</span>
+                        <h3>Authentication API</h3>
+                        <p>Implement secure login API</p>
+
+                        <div class="task-bottom">
+                            <span>👤 Arjun</span>
+                            <span>Tomorrow</span>
+                        </div>
+                    </div>
+
+                    <div class="task-card">
+                        <span class="priority">MEDIUM</span>
+                        <h3>Dashboard Analytics</h3>
+                        <p>Create analytics components</p>
+
+                        <div class="task-bottom">
+                            <span>👤 Rahul</span>
+                            <span>Oct 10</span>
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <div class="kanban-column">
+
+                    <div class="kanban-header">
+                        <span>IN PROGRESS</span>
+                        <b>4</b>
+                    </div>
+
+                    <div class="task-card ai-risk">
+
+                        <div class="task-top">
+                            <span class="priority high-text">HIGH</span>
+                            <span>⚠️ 78%</span>
+                        </div>
+
+                        <h3>API Integration</h3>
+                        <p>Connect frontend with backend</p>
+
+                        <div class="task-bottom">
+                            <span>👤 Arjun</span>
+                            <span>Oct 08</span>
+                        </div>
+
+                        <div class="ai-mini">
+                            ✦ AI predicts delay risk
+                        </div>
+
+                    </div>
+
+                    <div class="task-card">
+                        <span class="priority">MEDIUM</span>
+                        <h3>UI Testing</h3>
+                        <p>Test dashboard components</p>
+
+                        <div class="task-bottom">
+                            <span>👤 Priya</span>
+                            <span>Oct 10</span>
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <div class="kanban-column">
+
+                    <div class="kanban-header">
+                        <span>IN REVIEW</span>
+                        <b>2</b>
+                    </div>
+
+                    <div class="task-card">
+                        <span class="priority">MEDIUM</span>
+                        <h3>Database Schema</h3>
+                        <p>Review database architecture</p>
+
+                        <div class="task-bottom">
+                            <span>👤 Rahul</span>
+                            <span>Today</span>
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <div class="kanban-column">
+
+                    <div class="kanban-header">
+                        <span>DONE</span>
+                        <b>8</b>
+                    </div>
+
+                    <div class="task-card completed">
+                        <span class="priority success-text">DONE</span>
+                        <h3>Project Setup</h3>
+                        <p>Initial repository setup</p>
+
+                        <div class="task-bottom">
+                            <span>👤 Arjun</span>
+                            <span>✓ Complete</span>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= TEAM ================= -->
+        <section id="team" class="section">
+
+            <div class="page-header">
+
+                <div>
+                    <p class="eyebrow">TEAM INTELLIGENCE</p>
+                    <h1>Team Workload</h1>
+                    <p class="muted">
+                        AI-powered resource allocation.
+                    </p>
+                </div>
+
+            </div>
+
+            <div class="panel">
+
+                <div class="panel-header">
+
+                    <div>
+                        <h2>Team Capacity</h2>
+                        <p>Current workload distribution</p>
+                    </div>
+
+                    <span class="ai-label">✦ AI ANALYSIS</span>
+
+                </div>
+
+                <div class="team-table">
+
+                    <div class="team-row header">
+                        <span>MEMBER</span>
+                        <span>ROLE</span>
+                        <span>TASKS</span>
+                        <span>CAPACITY</span>
+                        <span>STATUS</span>
+                    </div>
+
+                    <div class="team-row">
+                        <span class="member">
+                            <span class="avatar blue-avatar">A</span>
+                            Arjun
+                        </span>
+                        <span>Backend Developer</span>
+                        <span>8</span>
+                        <span>
+                            <div class="capacity">
+                                <div style="width:82%"></div>
+                            </div>
+                            82%
+                        </span>
+                        <span class="status success">Healthy</span>
+                    </div>
+
+                    <div class="team-row">
+                        <span class="member">
+                            <span class="avatar purple-avatar">P</span>
+                            Priya
+                        </span>
+                        <span>Frontend Developer</span>
+                        <span>11</span>
+                        <span>
+                            <div class="capacity danger">
+                                <div style="width:96%"></div>
+                            </div>
+                            96%
+                        </span>
+                        <span class="status warning">Overloaded</span>
+                    </div>
+
+                    <div class="team-row">
+                        <span class="member">
+                            <span class="avatar green-avatar">R</span>
+                            Rahul
+                        </span>
+                        <span>QA Engineer</span>
+                        <span>4</span>
+                        <span>
+                            <div class="capacity">
+                                <div style="width:42%"></div>
+                            </div>
+                            42%
+                        </span>
+                        <span class="status success">Available</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="ai-warning large">
+
+                <span class="ai-icon">✦</span>
+
+                <div>
+                    <b>AI Resource Recommendation</b>
+                    <p>
+                        Priya is overloaded at 96% capacity while Rahul
+                        has 58% available capacity.
+                        NEXUS AI recommends moving 2 testing tasks to Rahul.
+                    </p>
+                </div>
+
+                <button class="primary-btn" onclick="optimizeTeam()">
+                    Optimize Team
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= AI ================= -->
+        <section id="ai" class="section">
+
+            <div class="page-header">
+
+                <div>
+                    <p class="eyebrow">NEXUS INTELLIGENCE</p>
+                    <h1>AI Project Intelligence ✦</h1>
+                    <p class="muted">
+                        Predict problems before they become blockers.
+                    </p>
+                </div>
+
+            </div>
+
+
+            <div class="ai-health">
+
+                <div>
+                    <span class="status warning">● MEDIUM RISK</span>
+
+                    <h2>Project health requires attention</h2>
+
+                    <p>
+                        NEXUS AI analyzed 48 tasks, 8 team members,
+                        dependencies and project activity.
+                    </p>
+                </div>
+
+                <div class="big-score">
+                    72%
+                    <small>Health Score</small>
+                </div>
+
+            </div>
+
+
+            <div class="risk-grid">
+
+                <div class="risk-card critical">
+
+                    <div class="risk-header">
+                        <span>🔴 HIGH</span>
+                        <b>78%</b>
+                    </div>
+
+                    <h2>Backend API Delay</h2>
+
+                    <p>
+                        Authentication API is behind schedule and
+                        blocks 3 dependent tasks.
+                    </p>
+
+                    <div class="risk-data">
+                        <span>Impact <b>High</b></span>
+                        <span>Affected <b>6 tasks</b></span>
+                    </div>
+
+                    <div class="recommend-box">
+                        <b>✦ AI Recommendation</b>
+                        <p>
+                            Assign one additional backend developer
+                            for the next 2 days.
+                        </p>
+
+                        <button onclick="applyRecommendation(this)">
+                            Apply Recommendation
+                        </button>
+                    </div>
+
+                </div>
+
+
+                <div class="risk-card">
+
+                    <div class="risk-header">
+                        <span>🟠 MEDIUM</span>
+                        <b>64%</b>
+                    </div>
+
+                    <h2>QA Workload Increasing</h2>
+
+                    <p>
+                        Testing tasks are accumulating faster than
+                        the current QA capacity.
+                    </p>
+
+                    <div class="risk-data">
+                        <span>Impact <b>Medium</b></span>
+                        <span>Affected <b>4 tasks</b></span>
+                    </div>
+
+                    <div class="recommend-box">
+                        <b>✦ AI Recommendation</b>
+                        <p>
+                            Move two testing tasks to Rahul.
+                        </p>
+
+                        <button onclick="optimizeTeam()">
+                            Optimize Team
+                        </button>
+                    </div>
+
+                </div>
+
+
+                <div class="risk-card low">
+
+                    <div class="risk-header">
+                        <span>🟡 LOW</span>
+                        <b>32%</b>
+                    </div>
+
+                    <h2>Documentation Incomplete</h2>
+
+                    <p>
+                        API documentation is missing for recently
+                        completed endpoints.
+                    </p>
+
+                    <div class="risk-data">
+                        <span>Impact <b>Low</b></span>
+                        <span>Affected <b>2 tasks</b></span>
+                    </div>
+
+                    <div class="recommend-box">
+                        <b>✦ AI Recommendation</b>
+                        <p>
+                            Schedule documentation before deployment.
+                        </p>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- AI CHAT -->
+            <div class="ai-chat panel">
+
+                <div class="chat-header">
+                    <div class="ai-orb small">✦</div>
+
+                    <div>
+                        <h2>NEXUS AI Assistant</h2>
+                        <p>Your intelligent project co-pilot</p>
+                    </div>
+
+                    <span class="online">
+                        ● Online
+                    </span>
+                </div>
+
+
+                <div id="chatMessages" class="chat-messages">
+
+                    <div class="message ai-message">
+
+                        <div class="message-avatar">✦</div>
+
+                        <div>
+                            <p>
+                                Hi! I'm NEXUS AI. I analyzed your current
+                                project and found a few areas that need
+                                attention.
+                            </p>
+
+                            <div class="ai-stat-row">
+                                <span>🔴 5 At Risk Tasks</span>
+                                <span>👥 91% Team Utilization</span>
+                                <span>📅 4-Day Delay Risk</span>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="suggestions">
+
+                    <button onclick="askAI('Will we finish on time?')">
+                        Will we finish on time?
+                    </button>
+
+                    <button onclick="askAI('Who is overloaded?')">
+                        Who is overloaded?
+                    </button>
+
+                    <button onclick="askAI('What should we work on next?')">
+                        What should we work on next?
+                    </button>
+
+                </div>
+
+
+                <div class="chat-input">
+
+                    <input
+                        id="aiInput"
+                        placeholder="Ask anything about your project..."
+                        onkeypress="handleEnter(event)"
+                    >
+
+                    <button onclick="sendAI()">
+                        ↑
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= REPORTS ================= -->
+        <section id="reports" class="section">
+
+            <div class="page-header">
+
+                <div>
+                    <p class="eyebrow">AI GENERATED</p>
+                    <h1>Project Reports</h1>
+                    <p class="muted">
+                        Automatically generated project intelligence.
+                    </p>
+                </div>
+
+                <button class="primary-btn" onclick="generateReport()">
+                    ✦ Generate Report
+                </button>
+
+            </div>
+
+            <div class="report panel">
+
+                <div class="report-header">
+                    <div>
+                        <span class="ai-label">AI GENERATED</span>
+                        <h2>Campus Connect — Weekly Status Report</h2>
+                        <p>07 October 2026</p>
+                    </div>
+
+                    <button class="secondary-btn">
+                        ↓ Export PDF
+                    </button>
+                </div>
+
+                <hr>
+
+                <h3>Executive Summary</h3>
+
+                <p>
+                    Project is currently 68% complete. NEXUS AI has identified
+                    medium schedule risk due to API integration delays and
+                    increased QA workload. Without intervention, the project
+                    has a 78% probability of a 4-day delay.
+                </p>
+
+                <div class="report-grid">
+
+                    <div>
+                        <span>Completed This Week</span>
+                        <ul>
+                            <li>Authentication UI</li>
+                            <li>Database schema</li>
+                            <li>User registration</li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <span>Next Priorities</span>
+                        <ul>
+                            <li>API integration</li>
+                            <li>Integration testing</li>
+                            <li>Bug fixing</li>
+                        </ul>
+                    </div>
+
+                </div>
+
+                <div class="report-risk">
+                    <b>✦ AI Recommendation</b>
+                    <p>
+                        Reallocate two QA tasks and prioritize the
+                        authentication API to reduce the predicted delay.
+                    </p>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= ACTIVITY ================= -->
+        <section id="activity" class="section">
+
+            <div class="page-header">
+
+                <div>
+                    <p class="eyebrow">PROJECT HISTORY</p>
+                    <h1>Activity</h1>
+                    <p class="muted">
+                        Recent project activity.
+                    </p>
+                </div>
+
+            </div>
+
+            <div class="panel activity-panel">
+
+                <div class="activity-item">
+                    <div class="activity-icon green">✓</div>
+                    <div>
+                        <b>Arjun completed Database Schema</b>
+                        <p>15 minutes ago</p>
+                    </div>
+                </div>
+
+                <div class="activity-item">
+                    <div class="activity-icon purple">✦</div>
+                    <div>
+                        <b>NEXUS AI detected a potential deadline risk</b>
+                        <p>32 minutes ago</p>
+                    </div>
+                </div>
+
+                <div class="activity-item">
+                    <div class="activity-icon blue">↗</div>
+                    <div>
+                        <b>Priya updated Login UI</b>
+                        <p>1 hour ago</p>
+                    </div>
+                </div>
+
+                <div class="activity-item">
+                    <div class="activity-icon orange">!</div>
+                    <div>
+                        <b>API Integration became high priority</b>
+                        <p>2 hours ago</p>
+                    </div>
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<!-- ================= MODAL ================= -->
+
+<div id="modal" class="modal hidden">
+
+    <div class="modal-content">
+
+        <button class="close" onclick="closeModal()">×</button>
+
+        <h2>Create New Task</h2>
+        <p class="muted">Add a task to your project.</p>
+
+        <label>Task Name</label>
+        <input id="newTask" placeholder="Enter task name">
+
+        <label>Assignee</label>
+        <select>
+            <option>Arjun</option>
+            <option>Priya</option>
+            <option>Rahul</option>
+        </select>
+
+        <label>Priority</label>
+        <select>
+            <option>High</option>
+            <option>Medium</option>
+            <option>Low</option>
+        </select>
+
+        <label>Due Date</label>
+        <input type="date">
+
+        <button class="primary-btn" onclick="createTask()">
+            Create Task
+        </button>
+
+    </div>
+
+</div>
+
+
+<div id="toast" class="toast">
+    ✓ Recommendation applied successfully
+</div>
+
+
+<script src="script.js"></script>
+
+</body>
+</html>
